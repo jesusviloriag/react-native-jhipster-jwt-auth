@@ -1,4 +1,6 @@
-const direccion = 'http://localhost:9000/api/'; //dev
+const backendUrl = 'http://localhost:9000/api/';
+
+const appName = "<app name>"
 
 const tokenPrefix = '&csrf=';
 
@@ -16,7 +18,7 @@ export default class Auth {
 
     static login(username, password) {
         var _this = this;
-        return fetch(direccion + "authenticate", {
+        return fetch(backendUrl + "authenticate", {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -36,7 +38,7 @@ export default class Auth {
 
                 console.log('tokens', _this.session.token);
 
-                return fetch(direccion + 'account',{
+                return fetch(backendUrl + 'account',{
                     method: 'GET',
                     headers: {
                         Accept: 'application/json',
@@ -69,7 +71,7 @@ export default class Auth {
 
     static register(username, password, email) {
 
-        return fetch(direccion + "register", {
+        return fetch(backendUrl + "register", {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -87,8 +89,8 @@ export default class Auth {
                 if(response.ok == false){
                     console.log(response.headers.map);
                     if(response.headers && response.headers.map){
-                        console.log(response.headers.map['x-<app name>-error']);
-                        if(response.headers.map['x-<app name>-error'] === "Email is already in use!"){
+                        console.log(response.headers.map['x-' + appName + '-error']);
+                        if(response.headers.map['x-' + appName + '-error'] === "Email is already in use!"){
                             throw "EMAIL EXISTS"
                         }else{
                             throw "LOGIN EXISTS"
@@ -109,7 +111,7 @@ export default class Auth {
 
     static account(token){
         var _this = this;
-        return fetch(direccion + 'account',{
+        return fetch(backendUrl + 'account',{
             method: 'GET',
             headers: {
                 Accept: 'application/json',

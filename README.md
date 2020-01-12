@@ -21,3 +21,9 @@ Account registration
         console.log("User: ", Auth.session.user);
     }
 
+## Configuration
+
+backendUrl: the URL of your JHipster App URL (default: localhost:9000)
+
+appName: your JHipster App name for email error detection in Account Registration
+
