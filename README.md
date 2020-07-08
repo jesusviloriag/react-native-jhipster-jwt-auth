@@ -19,7 +19,7 @@ Account registration
 	Auth.register('username', 'password', 'email@server.com').then( response => {
         console.log("Response: ", response);
         console.log("User: ", Auth.session.user);
-        });
+    });
 
 ## Configuration
 
